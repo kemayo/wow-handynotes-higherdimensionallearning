@@ -3,6 +3,7 @@ local myname, ns = ...
 ns.defaults = {
     profile = {
         found = false,
+        today = true,
         icon_scale = 1.5,
         icon_alpha = 1.0,
         icon_item = true,
@@ -54,6 +55,12 @@ ns.options = {
             name = "What to display",
             inline = true,
             args = {
+                today = {
+                    type = "toggle",
+                    name = "Show today's only",
+                    desc = "One book spawns (intermittently) each weekday. If this is checked, only show today's.",
+                    order = 10,
+                },
                 found = {
                     type = "toggle",
                     name = "Show found",
@@ -120,6 +127,9 @@ ns.should_show_point = function(coord, point, currentZone, currentLevel)
         return false
     end
     if point.npc and not point.follower and not ns.db.show_npcs then
+        return false
+    end
+    if point.day and ns.db.today and tonumber(date('%w')) ~= point.day then
         return false
     end
     return true

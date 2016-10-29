@@ -177,6 +177,22 @@ local get_point_info_by_coord = function(mapFile, coord)
     return get_point_info(ns.points[mapFile] and ns.points[mapFile][coord])
 end
 
+local get_local_day
+do
+    local daymap = {
+        [0] = "SUNDAY",
+        [1] = "MONDAY",
+        [2] = "TUESDAY",
+        [3] = "WEDNESDAY",
+        [4] = "THURSDAY",
+        [5] = "FRIDAY",
+        [6] = "SATURDAY",
+    }
+    get_local_day = function(day)
+        return _G["WEEKDAY_" .. daymap[day]]
+    end
+end
+
 local function handle_tooltip(tooltip, point)
     if point then
         -- major:
@@ -228,6 +244,10 @@ local function handle_tooltip(tooltip, point)
                     complete and 0 or 1, complete and 1 or 0, 0
                 )
             end
+        end
+        if point.day then
+            local today = tonumber(date('%w')) == point.day
+            tooltip:AddDoubleLine("Day", get_local_day(point.day), nil, nil, nil, today and 0 or 1, today and 1 or 0, 0)
         end
         if point.note then
             tooltip:AddLine(point.note, nil, nil, nil, true)
