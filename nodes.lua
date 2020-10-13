@@ -14,7 +14,7 @@ ns.points = {
         },
     },
     --]]
-    ["Azsuna"] = {
+    [630] = {
         [68115116] = { achievement=11175, criteria=32196, day=0, atlas="minortalents-icon-book", }, -- ch 1, Sunday
         [55257153] = { achievement=11175, criteria=32197, day=1, note="On top of the tower, have fun with that", atlas="minortalents-icon-book", }, -- ch 2, Monday
         [33371118] = { achievement=11175, criteria=32198, day=2, atlas="minortalents-icon-book", }, -- ch 3, Tuesday

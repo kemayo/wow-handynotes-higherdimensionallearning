@@ -85,10 +85,7 @@ ns.options = {
 }
 
 local player_faction = UnitFactionGroup("player")
-ns.should_show_point = function(coord, point, currentZone, currentLevel)
-    if point.level and point.level ~= currentLevel then
-        return false
-    end
+ns.should_show_point = function(coord, point, currentZone)
     if ns.hidden[currentZone] and ns.hidden[currentZone][coord] then
         return false
     end
@@ -99,7 +96,7 @@ ns.should_show_point = function(coord, point, currentZone, currentLevel)
         return false
     end
     if (not ns.db.found) then
-        if point.quest and IsQuestFlaggedCompleted(point.quest) then
+        if point.quest and C_QuestLog.IsQuestFlaggedCompleted(point.quest) then
             return false
         end
         if point.achievement then
