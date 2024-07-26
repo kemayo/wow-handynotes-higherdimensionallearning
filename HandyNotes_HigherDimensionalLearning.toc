@@ -1,4 +1,4 @@
-## Interface: 100002
+## Interface: 110000, 110002
 ## Title: HandyNotes: HigherDimensionalLearning
 ## Notes: Books in Azsuna? Sure, why not?
 ## Author: Kemayo
